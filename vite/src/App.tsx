@@ -65,10 +65,20 @@ const App = () => {
     });
 
     const renderPage = (props: RenderPageProps) => {
+        const Alert = () => {
+            const onClick = () => alert("hello")
+            return (
+                <button className='alert' style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, zIndex: 99, background: "transparent" }} onClick={onClick}>BBBBB</button>
+            )
+        }
+
         return <>
-            {props.canvasLayer.children}
-            {props.textLayer.children}
-            {props.annotationLayer.children}
+            <div>
+                {props.canvasLayer.children}
+                {props.textLayer.children}
+                {props.annotationLayer.children}
+            </div>
+            <Alert />
         </>
     }
 
@@ -84,7 +94,7 @@ const App = () => {
             >
                 <Viewer
                     fileUrl={'./pdf-open-parameters.pdf'}
-                    plugins={[defaultLayoutPluginInstance, chunkPluginInstance, highlightPluginInstance]}
+                    plugins={[defaultLayoutPluginInstance, chunkPluginInstance]}
                     renderPage={renderPage}
                 />
             </div>

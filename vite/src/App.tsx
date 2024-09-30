@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { PageChangeEvent, RenderPageProps, Viewer, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import { highlightPlugin, RenderHighlightsProps, Trigger } from '@react-pdf-viewer/highlight';
@@ -42,7 +41,19 @@ const App = () => {
         ]
 
         return (
-            <div style={{ background: "#000" }}>AAA</div>
+            <>
+                {areas.map((area, index) => {
+                    if (props.pageIndex === area.pageIndex) {
+                        const styles = props.getCssProperties(area, props.rotation);
+                        styles.backgroundColor = 'yellow';
+                        styles.opacity = 0.6;
+                        styles.zIndex = 0;
+                        return (
+                            <div key={index} style={styles} />
+                        )
+                    }
+                })}
+            </>
         )
     };
 
